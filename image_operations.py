@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 import matplotlib.pyplot as plt
 
 # read an image
@@ -48,12 +49,24 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # average of images
-average = lenna / 2 + mandrill / 2
+average = (lenna / 2).astype(np.uint8) + (mandrill / 2).astype(np.uint8)
 cv2.imshow('Average Image', average)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-average_alt = (lenna + mandrill) / 2  # note that pixel value can hold a maximum value of 255
+average_alt = ((lenna + mandrill) / 2).astype(np.uint8)  # note that pixel value can hold a maximum value of 255
 cv2.imshow('Average Alt Image', average_alt)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# multiplying by a scalar
+scaled_img = (img * 1.5).astype(np.uint8)
+cv2.imshow('Scaled Image', scaled_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# blend images
+blended_img = (lenna * 0.75).astype(np.uint8) + (mandrill * 0.25).astype(np.uint8)
+cv2.imshow('Blended Image', blended_img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
